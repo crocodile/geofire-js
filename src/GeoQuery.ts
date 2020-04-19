@@ -403,7 +403,12 @@ export class GeoQuery {
     }
 
     // Keep track of which geohashes have been processed so we know when to fire the 'ready' event
-    this._outstandingGeohashReadyEvents = geohashesToQuery.slice();
+    this._outstandingGeohashReadyEvents = [
+        ...new Set([
+          ...this._outstandingGeohashReadyEvents,
+          ...geohashesToQuery,
+        ]),
+      ];
 
     // Loop through each geohash to query for and listen for new geohashes which have the same prefix.
     // For every match, attach a value callback which will fire the appropriate events.
