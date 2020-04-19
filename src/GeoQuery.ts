@@ -9,6 +9,7 @@ import { GeoFireTypes } from './GeoFireTypes';
  */
 export class GeoQuery {
   // Event callbacks
+  private _outstandingGeohashReadyEvents = [];
   private _callbacks: GeoFireTypes.QueryCallbacks = { ready: [], key_entered: [], key_exited: [], key_moved: [] };
   // Variable to track when the query is cancelled
   private _cancelled = false;
